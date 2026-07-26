@@ -8,6 +8,9 @@ class Satellite (SpaceEntity):
     def receive_signal(self, packet):
         print (f"{self.name} Received: {packet}")
 
+class BrokenConnectionError (CommsError):
+    pass
+
 def attempt_transmission(packet: Packet):
 
     while True:
@@ -23,9 +26,20 @@ def attempt_transmission(packet: Packet):
         except DataCorruptedError:
             print ("Data corrupted. retrying...")
 
+        except LinkTerminatedError:
+            print ("Link Lost")
+            raise BrokenConnectionError
+
+        except OutOfRangeError:
+            print ("Out of range")
+            raise BrokenConnectionError
+
             
 israel_space_network = SpaceNetwork(level = 3)
 Sat1 = Satellite("Sat1", 100)
 Sat2 = Satellite("Sat2", 200)
 packet_1 = Packet ("this is an important secret message",Sat1,Sat2,)
-attempt_transmission(packet_1)
+try:
+    attempt_transmission(packet_1)
+except BrokenConnectionError:
+    print ("Transmission failed")
