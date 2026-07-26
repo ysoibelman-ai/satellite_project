@@ -63,8 +63,10 @@ Sat2 = Satellite("Sat2", 200)
 Sat3 = Satellite("Sat3", 300)
 Sat4 = Satellite("Sat4", 400)
 
-p_final = Packet ("hello from earth",Sat1,Sat2,)
-p_earth_to_sat1 = RelayPacket (p_final,earth,Sat1)
+p_final = Packet ("Hello From Earth",Sat3,Sat4)
+p_sat2_to_sat3 = RelayPacket (p_final,Sat2,Sat3)
+p_sat1_to_sat2 = RelayPacket(p_sat2_to_sat3,Sat1,Sat2)
+p_earth_to_sat1 = RelayPacket(p_sat1_to_sat2,earth,Sat1)
 
 try:
     attempt_transmission(p_earth_to_sat1)
