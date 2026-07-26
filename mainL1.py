@@ -1,4 +1,5 @@
 from space_network_lib import *
+from time import sleep
 
 class Satellite (SpaceEntity):
     def __int__(self,name: str, distance_from_earth: int | float):
@@ -7,10 +8,24 @@ class Satellite (SpaceEntity):
     def receive_signal(self, packet):
         print (f"{self.name} Received: {packet}")
 
+def attempt_transmission(packet: Packet):
 
-israel_space_network = SpaceNetwork(level = 1)
+    while True:
+
+        try:
+            israel_space_network.send(packet)
+            break
+
+        except TemporalInterferenceError:
+            print ("Interference, waiting...")
+            sleep (2)
+            
+        except DataCorruptedError:
+            print ("Data corrupted. retrying...")
+
+            
+israel_space_network = SpaceNetwork(level = 2)
 Sat1 = Satellite("Sat1", 100)
 Sat2 = Satellite("Sat2", 200)
-
 packet_1 = Packet ("this is an important secret message",Sat1,Sat2,)
-israel_space_network.send(packet_1)
+attempt_transmission(packet_1)
