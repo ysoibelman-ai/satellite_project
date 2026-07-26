@@ -24,7 +24,7 @@ def attempt_transmission(packet: Packet):
             print ("Data corrupted. retrying...")
 
             
-israel_space_network = SpaceNetwork(level = 2)
+israel_space_network = SpaceNetwork(level = 3)
 Sat1 = Satellite("Sat1", 100)
 Sat2 = Satellite("Sat2", 200)
 packet_1 = Packet ("this is an important secret message",Sat1,Sat2,)
