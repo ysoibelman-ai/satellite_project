@@ -27,7 +27,6 @@ class RelayPacket (Packet):
     def __repr__(self):
         return f"RelayPacket(Relaying [{self.data}] to {self.receiver} from {self.sender})"
     
-
 def attempt_transmission(packet: Packet):
 
     while True:
@@ -55,8 +54,7 @@ class Earth (SpaceEntity):
         super().__init__(name, distance_from_earth)
     def receive_signal(self, packet: Packet):
         pass
-
-            
+          
 israel_space_network = SpaceNetwork(level = 3)
 Sat1 = Satellite("Sat1", 100)
 Sat2 = Satellite("Sat2", 200)
