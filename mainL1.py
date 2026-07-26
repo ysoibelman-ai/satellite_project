@@ -6,7 +6,13 @@ class Satellite (SpaceEntity):
         super().__init__(self,name,distance_from_earth)
 
     def receive_signal(self, packet):
-        print (f"{self.name} Received: {packet}")
+        if isinstance (packet,RelayPacket):
+            print (f"Unwrapping and forwarding to {packet.receiver}")
+            inner_packet = packet.data
+            attempt_transmission(inner_packet)
+
+        else:
+            print (f"Final destination reached: {packet.data}")
 
 class BrokenConnectionError (CommsError):
     pass
