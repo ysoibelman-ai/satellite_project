@@ -14,11 +14,3 @@ Sat2 = Satellite("Sat2", 200)
 
 packet_1 = Packet ("this is an important secret message",Sat1,Sat2,)
 israel_space_network.send(packet_1)
-
-
-
-
-
-
-
-    
