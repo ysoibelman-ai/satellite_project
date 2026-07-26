@@ -1,7 +1,7 @@
 from space_network_lib import *
 
 class Satellite (SpaceEntity):
-    def __int__(self,name: str,distance_from_earth: int | float):
+    def __int__(self,name: str, distance_from_earth: int | float):
         super().__init__(self,name,distance_from_earth)
 
     def receive_signal(self, packet):
