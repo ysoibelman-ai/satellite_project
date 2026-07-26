@@ -65,5 +65,6 @@ p_earth_to_sat1 = RelayPacket (p_final,earth,Sat1)
 
 try:
     attempt_transmission(p_earth_to_sat1)
+    
 except BrokenConnectionError:
     print ("Transmission failed")
