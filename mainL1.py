@@ -13,8 +13,9 @@ def attempt_transmission(packet: Packet):
 
     while True:
         try:
-                israel_space_network.send(packet)
-                break
+            israel_space_network.send(packet)
+            print ("worked")
+            break
 
         except (TemporalInterferenceError, DataCorruptedError) as error:
             if error == TemporalInterferenceError:
@@ -29,4 +30,3 @@ israel_space_network = SpaceNetwork(level = 2)
 Sat1 = Satellite("Sat1", 100)
 Sat2 = Satellite("Sat2", 200)
 packet_1 = Packet ("this is an important secret message",Sat1,Sat2,)
-attempt_transmission(packet_1)
