@@ -8,7 +8,6 @@ class Satellite (SpaceEntity):
     def receive_signal(self, packet):
         print (f"{self.name} Received: {packet}")
 
-
 def attempt_transmission(packet: Packet):
 
     while True:
@@ -21,11 +20,10 @@ def attempt_transmission(packet: Packet):
             print ("Interference, waiting...")
             sleep (2)
             
-
         except DataCorruptedError:
             print ("Data corrupted. retrying...")
-            
 
+            
 israel_space_network = SpaceNetwork(level = 2)
 Sat1 = Satellite("Sat1", 100)
 Sat2 = Satellite("Sat2", 200)
